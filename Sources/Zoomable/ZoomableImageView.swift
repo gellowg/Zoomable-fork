@@ -66,6 +66,17 @@ public struct ZoomableImageView<Content>: View where Content: View {
                             self.imageSize = CGSize(width: proxy.size.width, height: proxy.size.width * (image.size.height / image.size.width))
                         }
                     })
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                scale = value.magnitude
+                            }
+                            .onEnded { _ in
+                                withAnimation {
+                                    scale = 1.0 // Reset after release
+                                }
+                            }
+                    )
                     .indicator(.activity)
                     .scaledToFit()
                     .clipShape(Rectangle())
