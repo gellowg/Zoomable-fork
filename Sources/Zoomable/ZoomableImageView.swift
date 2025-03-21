@@ -35,6 +35,7 @@ public struct ZoomableImageView<Content>: View where Content: View {
     @ViewBuilder private var overlay: () -> Content
     
     @State private var imageSize: CGSize = .zero
+        @State private var scale: CGFloat = 1.0
     
     /**
      Initializes an `ZoomableImageView`
@@ -66,15 +67,11 @@ public struct ZoomableImageView<Content>: View where Content: View {
                             self.imageSize = CGSize(width: proxy.size.width, height: proxy.size.width * (image.size.height / image.size.width))
                         }
                     })
+                    .scaleEffect(scale)
                     .gesture(
                         MagnificationGesture()
                             .onChanged { value in
                                 scale = value.magnitude
-                            }
-                            .onEnded { _ in
-                                withAnimation {
-                                    scale = 1.0 // Reset after release
-                                }
                             }
                     )
                     .indicator(.activity)
