@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", .branch("master")),
-        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", .branch("master"))
+        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", .exact("2.2.7"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
