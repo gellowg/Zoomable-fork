@@ -74,7 +74,7 @@ public struct ZoomableImageView<Content>: View where Content: View {
                                 scale = value.magnitude
                             }
                     )
-                    .indicator(.activity)
+                    //.indicator(.activity)
                     .scaledToFit()
                     .clipShape(Rectangle())
                     .overlay(self.overlay())
